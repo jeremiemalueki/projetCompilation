@@ -13,5 +13,6 @@ rule token = parse
     | '*' { FOIS }
     | '(' { GPAREN }
     | ')' { DPAREN }
+    | [';'] { PT_VIRG }
     | eof { raise Eof }
     | _ { raise TokenInconu }
