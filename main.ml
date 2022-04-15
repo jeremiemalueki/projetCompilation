@@ -3,6 +3,7 @@ let _ =
         let lexbuf = Lexing.from_channel stdin in (*lexeur lancé sur stdin *)
         while true do (*on ne s'arrete pas *)
             Parseur.main Lexeur.token lexbuf (*parseur ligne*)
+            |> Printf.printf "%i\n%!";
         done
     with
         | Lexeur.Eof -> exit 0 (*impossible*)
