@@ -1,4 +1,3 @@
-
 type expression_a =
     | Plus  of expression_a * expression_a
     | Moins of expression_a * expression_a
@@ -20,4 +19,4 @@ and print_AST form = let open Format in function
     | Div   (g,d) -> print_binaire form "Div" g d
     | Neg    e    -> fprintf form "@[<2>%s@ %a@]" "Neg" print_AST e 
     | Num    n    -> fprintf form "@[<2>%s@ %i@]" "Num" n
-;;
+;; 

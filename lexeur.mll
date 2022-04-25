@@ -5,9 +5,9 @@
     exception TokenInconu
 }
 rule token = parse
-        [' ' '\t'] { token lexbuf }
+        [' ' '\t' '\r'] { token lexbuf }
     | ['\n'] { EOL }
-    | ['0'-'9']+ { NOMBRE }
+    | ['0'-'9']+ as lexem { NOMBRE(int_of_string lexem) }
     | '+' { PLUS }
     | '-' { MOINS }
     | '*' { FOIS }
