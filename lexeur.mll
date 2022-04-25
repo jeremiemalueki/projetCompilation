@@ -5,13 +5,13 @@
     exception TokenInconu
 }
 rule token = parse
-        [' ' '\t' '\r'] { token lexbuf }
-    | ['\n'] { EOL }
+        [' ' '\t' '\n' '\r'] { token lexbuf }
     | ['0'-'9']+ as lexem { NOMBRE(int_of_string lexem) }
     | '+' { PLUS }
     | '-' { MOINS }
     | '*' { FOIS }
     | '(' { GPAREN }
     | ')' { DPAREN }
+    | [';'] { PT_VIRG }
     | eof { raise Eof }
     | _ { raise TokenInconu }
