@@ -19,4 +19,24 @@ and print_AST form = let open Format in function
     | Div   (g,d) -> print_binaire form "Div" g d
     | Neg    e    -> fprintf form "@[<2>%s@ %a@]" "Neg" print_AST e 
     | Num    n    -> fprintf form "@[<2>%s@ %i@]" "Num" n
-;; 
+;;
+
+let rec code expression =
+   match expression with
+   | Plus  (g,d) -> Printf.sprintf "%s\n%s\n%s" (code g)  (code d)  "AddiNb"
+   | Moins (g,d) -> Printf.sprintf "%s\n%s\n%s" (code g)  (code d)  "SubiNb"
+   | Mult  (g,d) -> Printf.sprintf "%s\n%s\n%s" (code g)  (code d)  "MultNb"
+   | Div   (g,d) -> Printf.sprintf "%s\n%s\n%s" (code g)  (code d)  "DiviNb"
+   | Neg   (e)    -> Printf.sprintf "%s\n%s" (code e)  "NegaNb"
+   | Num    n    -> Printf.sprintf "%s %d" "CsteNb" n
+;;
+
+(* let rec code1 s g d=(code2 g)^"\n"^(code2 d)^"\n"^s
+and code2 = function
+    | Plus  (g,d) -> code1 "addiNb" g d
+    | Moins (g,d) -> code1 "SubiNb" g d 
+    | Mult  (g,d) -> code1 "MultNb" g d
+    | Div   (g,d) -> code1 "DivNb"  g d 
+    | Neg    e    -> (code2 e)^"\nNot" 
+    | Num    n    -> "CstNb"^(string_of_int n)
+;; *)

@@ -1,11 +1,15 @@
 let _ = 
+    let argc= Array.length Sys.argv in
+    let entree = if (argc==2) then (open_in Sys.argv.(1)) else (stdin) in
+    let sortie = if (argc==2) then (open_out (Sys.argv.(1) ^".jsm")) else (stdout) in
+
     try
-        let argc= Array.length Sys.argv in
-        let lexbuf = if (argc==2) then Lexing.from_channel (open_in Sys.argv.(1)) 
-            else Lexing.from_channel stdin in (*lexeur lancé sur stdin *)
+        let lexbuf = Lexing.from_channel entree in
         while true do (*on ne s'arrete pas *)
             Parseur.main Lexeur.token lexbuf (*parseur ligne*)
-            |> Format.printf "%a\n%!" AST.print_AST ;
+            |> AST.code
+            |> Printf.fprintf sortie "%s\n%!"  ;
+            (* |> Format.printf "%a\n%!" AST.print_AST ; *)
         done
     with
         | Lexeur.Eof -> exit 0 (*impossible*)
