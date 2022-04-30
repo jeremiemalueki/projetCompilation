@@ -30,13 +30,3 @@ let rec code expression =
    | Neg   (e)    -> Printf.sprintf "%s\n%s" (code e)  "NegaNb"
    | Num    n    -> Printf.sprintf "%s %d" "CsteNb" n
 ;;
-
-(* let rec code1 s g d=(code2 g)^"\n"^(code2 d)^"\n"^s
-and code2 = function
-    | Plus  (g,d) -> code1 "addiNb" g d
-    | Moins (g,d) -> code1 "SubiNb" g d 
-    | Mult  (g,d) -> code1 "MultNb" g d
-    | Div   (g,d) -> code1 "DivNb"  g d 
-    | Neg    e    -> (code2 e)^"\nNot" 
-    | Num    n    -> "CstNb"^(string_of_int n)
-;; *)
