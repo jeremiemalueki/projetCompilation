@@ -10,6 +10,7 @@ rule token = parse
     | '+' { PLUS }
     | '-' { MOINS }
     | '*' { FOIS }
+    | '%' {MOD}
     | '(' { GPAREN }
     | ')' { DPAREN }
     | [';'] { PT_VIRG }
