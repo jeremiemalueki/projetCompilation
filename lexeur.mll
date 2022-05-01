@@ -6,10 +6,11 @@
 }
 rule token = parse
         [' ' '\t' '\n' '\r'] { token lexbuf }
-    | ['0'-'9']+ as lexem { NOMBRE(int_of_string lexem) }
+    | (['0'-'9']+ '.')? ['0'-'9']+ as lexem { NOMBRE(int_of_string lexem) }
     | '+' { PLUS }
     | '-' { MOINS }
     | '*' { FOIS }
+    | '%' {MOD}
     | '(' { GPAREN }
     | ')' { DPAREN }
     | [';'] { PT_VIRG }

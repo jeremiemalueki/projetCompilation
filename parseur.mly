@@ -2,10 +2,10 @@
     open AST
 %}
 %token <int> NOMBRE
-%token PLUS MOINS FOIS GPAREN DPAREN PT_VIRG
+%token PLUS MOINS FOIS GPAREN DPAREN PT_VIRG MOD
 
 %left PLUS MOINS
-%left FOIS
+%left FOIS MOD
 %nonassoc UMOINS
 
 
