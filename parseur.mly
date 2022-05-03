@@ -1,4 +1,4 @@
-%token NOMBRE PLUS MOINS FOIS GPAREN DPAREN PT_VIRG MOD
+%token NOMBRE PLUS MOINS FOIS GPAREN DPAREN PT_VIRG MOD BOOLEAN
 
 %left PLUS MOINS
 %left FOIS
@@ -17,5 +17,6 @@ expression PLUS expression {}
 | expression MOD expression {}
 | GPAREN expression DPAREN {}
 | MOINS expression %prec UMOINS {}
+| BOOLEAN {}
 | NOMBRE {}
 ;
