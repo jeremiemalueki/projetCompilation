@@ -6,12 +6,16 @@
 }
 rule token = parse
         [' ' '\t' '\n' '\r'] { token lexbuf }
-    | (['0'-'9']+ '.')? ['0'-'9']+ { NOMBRE }
-    | 'True'|'False' {BOOLEAN}
+    | (['0'-'9']+ '.')? ['0'-'9']+ {NOMBRE}
+    | "true" | "false" { BOOLEAN}
+    | "==" {EQUALS}
+    | "<"   {INF}
+    | "<=" {INF_EQUALS}
+    | "!"   {NOT}
     | '+' { PLUS }
     | '-' { MOINS }
     | '*' { FOIS }
-    | '%' {MOD}
+    | '%' { MOD }
     | '(' { GPAREN }
     | ')' { DPAREN }
     | [';'] { PT_VIRG }
