@@ -1,7 +1,7 @@
-%token NOMBRE PLUS MOINS FOIS GPAREN DPAREN PT_VIRG MOD BOOLEAN
-
+%token NOMBRE PLUS MOINS FOIS GPAREN DPAREN PT_VIRG MOD BOOLEAN NOT INF INF_EQUALS EQUALS
+%left EQUALS INF INF_EQUALS
 %left PLUS MOINS
-%left FOIS
+%left FOIS MOD
 %nonassoc UMOINS
 
 %type <unit> main expression
@@ -17,6 +17,10 @@ expression PLUS expression {}
 | expression MOD expression {}
 | GPAREN expression DPAREN {}
 | MOINS expression %prec UMOINS {}
+| expression EQUALS expression {}
+| expression INF expression {}
+| expression INF_EQUALS expression {}
+| NOT expression {}
 | BOOLEAN {}
 | NOMBRE {}
 ;
