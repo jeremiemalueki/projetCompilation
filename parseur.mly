@@ -7,7 +7,7 @@
 %left EQUALS INF INF_EQUALS
 %left PLUS MOINS
 %left FOIS MOD
-%nonassoc UMOINS
+%nonassoc UMOINS NOT
 
 
 %type <AST.expression_a> main expression
