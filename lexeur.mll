@@ -7,7 +7,7 @@
 rule token = parse
         [' ' '\t' '\n' '\r'] { token lexbuf }
     | (['0'-'9']+ '.')? ['0'-'9']+ {NOMBRE}
-    | "true" | "false" { BOOLEAN}
+    | "True" | "False" { BOOLEAN}
     | "==" {EQUALS}
     | "<"   {INF}
     | "<=" {INF_EQUALS}
