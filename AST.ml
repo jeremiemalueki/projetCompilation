@@ -5,7 +5,12 @@ type expression_a =
     | Div   of expression_a * expression_a
     | Mod   of expression_a * expression_a
     | Neg   of expression_a
-    | Num   of int
+    | Equals   of expression_a * expression_a
+    | Inf_equals   of expression_a * expression_a
+    | Inf   of expression_a * expression_a
+    | Not   of expression_a
+    | Boolean   of bool
+    | Num   of float
 ;;
 
 
@@ -18,9 +23,14 @@ and print_AST form = let open Format in function
     | Moins (g,d) -> print_binaire form "Moins" g d
     | Mult  (g,d) -> print_binaire form "Mult" g d
     | Div   (g,d) -> print_binaire form "Div" g d
-    | Mod   (g,d) -> print_binaire form "Mod" g d
-    | Neg    e    -> fprintf form "@[<2>%s@ %a@]" "Neg" print_AST e 
-    | Num    n    -> fprintf form "@[<2>%s@ %i@]" "Num" n
+    | Mod (g,d) -> print_binaire form "Mod" g d
+    | Neg    e    -> fprintf form "@[<2>%s@ %a@]" "Neg" print_AST e
+    | Equals (g,d) -> print_binaire form "Equals" g d
+    | Inf_equals (g,d) -> print_binaire form "Inf_equals" g d
+    | Inf (g,d) -> print_binaire form "Inf" g d
+    | Not e    -> fprintf form "@[<2>%s@ %a@]" "Not" print_AST e
+    | Boolean b    -> fprintf form "@[<2>%s@ %b@]" "Boolean" b
+    | Num    n    -> fprintf form "@[<2>%s@ %f@]" "Num" n
 ;;
 
 let rec code expression =
@@ -31,5 +41,10 @@ let rec code expression =
    | Div   (g,d) -> Printf.sprintf "%s\n%s\n%s" (code g)  (code d)  "DiviNb"
    | Mod   (g,d) -> Printf.sprintf "%s\n%s\n%s" (code g)  (code d)  "ModuNb"
    | Neg   (e)    -> Printf.sprintf "%s\n%s" (code e)  "NegaNb"
+   | Equals (g,d) -> Printf.sprintf "%s\n%s\n%s" (code g)  (code d)  "Equals"
+   | Inf_equals (g,d) -> Printf.sprintf "%s\n%s\n%s" (code g)  (code d)  "LoEqNb"
+   | Inf (g,d) -> Printf.sprintf "%s\n%s\n%s" (code g)  (code d)  "LoStNb"
+   | Not e    -> Printf.sprintf "%s\n%s" (code e)  "Not"
+   | Boolean b    -> Printf.sprintf "%s %b" "CsteBo" b
    | Num    n    -> Printf.sprintf "%s %d" "CsteNb" n
 ;;
