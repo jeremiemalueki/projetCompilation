@@ -10,8 +10,11 @@ rule token = parse
     | "True" | "False" as lexem { BOOLEAN(bool_of_string (String.lowercase_ascii lexem)) }
     | "==" {EQUALS}
     | "<"   {INF}
+    | ">"   {SUP}
     | "<=" {INF_EQUALS}
+    | ">="   {SUP_EQUALS}
     | "!"   {NOT}
+    | "!="  {NOT_EQUALS}
     | '+' { PLUS }
     | '-' { MOINS }
     | '*' { FOIS }
