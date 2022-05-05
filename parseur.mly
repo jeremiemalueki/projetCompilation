@@ -23,10 +23,10 @@ expression PLUS expression { Plus ($1,$3) }
 | expression MOD expression { Mod ($1,$3) }
 | GPAREN expression DPAREN { $2 }
 | MOINS expression %prec UMOINS { Neg $2 }
-| expression EQUALS expression {Equals}
-| expression INF expression {}
-| expression INF_EQUALS expression {}
-| NOT expression {}
-| BOOLEAN {bool}
+| expression EQUALS expression { Equals($1,$3) }
+| expression INF expression { Inf($1,$3) }
+| expression INF_EQUALS expression { Inf_equals($1,$3) }
+| NOT expression { Not $2 }
+| BOOLEAN { Boolean $1 }
 | NOMBRE { Num $1 }
 ;
