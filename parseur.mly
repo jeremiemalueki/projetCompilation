@@ -1,8 +1,8 @@
-%token NOMBRE PLUS MOINS FOIS GPAREN DPAREN PT_VIRG MOD BOOLEAN NOT INF INF_EQUALS EQUALS
-%left EQUALS INF INF_EQUALS
+%token NOMBRE PLUS MOINS FOIS GPAREN DPAREN PT_VIRG MOD BOOLEAN NOT INF INF_EQUALS SUP SUP_EQUALS EQUALS NOT_EQUALS
+%left EQUALS INF INF_EQUALS SUP SUP_EQUALS NOT_EQUALS
 %left PLUS MOINS
 %left FOIS MOD
-%nonassoc UMOINS
+%nonassoc UMOINS NOT
 
 %type <unit> main expression
 %start main
@@ -20,7 +20,10 @@ expression PLUS expression {}
 | expression EQUALS expression {}
 | expression INF expression {}
 | expression INF_EQUALS expression {}
+| expression SUP expression {}
+| expression SUP_EQUALS expression {}
 | NOT expression {}
+| expression NOT_EQUALS expression {}
 | BOOLEAN {}
 | NOMBRE {}
 ;
